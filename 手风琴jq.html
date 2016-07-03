@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-size: 50px;
+        }
+        #outer{
+            width: 500px;
+            overflow: hidden;
+        }
+        ul{
+            list-style: none;
+        }
+        ul li{
+            float: left;
+            position: relative;
+            left: 0;
+            margin-left: 00px;
+
+        }
+        .box{
+            width: 2000px;
+            height: 100px;
+        }
+        .div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            float: left;
+        }
+        .div2{
+            width: 0;
+            height: 100px;
+            background: gold;
+            float: left;
+            margin-left: 0px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="outer">
+    <ul class="box" id="box">
+        <li>
+            <div class="div1">1</div>
+            <div class="div2">1</div>
+        </li>
+        <li>
+            <div class="div1">2</div>
+            <div class="div2">2</div>
+        </li>
+        <li>
+            <div class="div1">3</div>
+            <div class="div2">3</div>
+        </li>
+        <li>
+            <div class="div1">4</div>
+            <div class="div2">4</div>
+        </li>
+        <li>
+            <div class="div1">5</div>
+            <div class="div2">5</div>
+        </li>
+    </ul>
+</div>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script>
+    var $box=$('#box');
+    $box.find('li').on("mouseover",function(e){
+    e.stopPropagation();
+    if($(this).index()<=3){
+    $(this).children('.div1').next().stop().animate({width:300}).parent().siblings().children('.div2').stop().animate({width:0});
+    $(this).stop().animate({left:-100*($(this).index())}).siblings().stop().animate({left:-100*($(this).index())})
+
+    }else{
+    $(this).children('.div1').next().stop().animate({width:300}).parent().siblings().children('.div2').stop().animate({width:0});
+    $(this).stop().animate({left:-100*($(this).index()-1)}).siblings().stop().animate({left:-100*($(this).index()-1)})
+    }
+
+    }).on("mouseout",function(e){
+    e.stopPropagation()
+    $('.div2').stop().animate({width:0});
+    $(this).stop().animate({left:0}).siblings().stop().animate({left:0})
+    })
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
